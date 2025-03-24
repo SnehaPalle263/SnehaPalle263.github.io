@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    </head>
+    <body>
+        <div>
+            <input id="SNo" placeholder="Enter SNo"/>
+            <input id="name" placeholder="Enter name"/>
+            <input id="college" placeholder="Enter college"/>
+            <input id="email" placeholder="Enter email"/>
+        </div>
+        <button onclick="insert();">Insert info</button>
+
+        <div id="demo_div"></div>
+        <button onclick="show_student_info();">Show info</button>
+
+        <script>
+            const student = {
+                SNo: "S00452357",
+                name: "Sneha",
+                college: "AUM",
+                email: "spalle5@aum.edu",
+                description: function(){
+                    return `Info: SNo:  ${this.SNo}, Name: ${this.name}, College: ${this.college}, Email: ${this.email}`;
+                }
+            };
+
+            function show_student_info(){
+                document.getElementById("demo_div").innerHTML = student.description();
+            }
+
+            function insert(){
+                const SNo = document.getElementById("SNo").value;
+                const name = document.getElementById("name").value;
+                const college = document.getElementById("college").value;
+                const email = document.getElementById("email").value;
+
+                student.SNo = SNo;
+                student.name = name;
+                student.college = college;
+                student.email = email;
+            }
+        </script>
+    </body>
+</html>

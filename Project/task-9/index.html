@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Function Tool</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: black;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            max-width: 500px;
+            margin: auto;
+            background-color: darkslategray;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        input {
+            padding: 8px;
+            width: 80%;
+            margin: 10px 0;
+            font-size: 1em;
+            text-align: center;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1.2em;
+            background-color: gray;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+        button:hover {
+            background-color: lightgray;
+            color: black;
+        }
+        .result {
+            font-size: 1.2em;
+            margin-top: 10px;
+            padding: 10px;
+            background-color: aquamarine;
+            border-radius: 10px;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Number Sequence Generator</h2>
+        <input id="sequence_input" type="number" placeholder="Enter size" onkeyup="generateSequence();"/>
+        <div id="sequence_result" class="result"></div>
+    </div>
+
+    <div class="container">
+        <h2>Sum Calculator</h2>
+        <input id="input_a" type="number" placeholder="Enter a"/>
+        <input id="input_b" type="number" placeholder="Enter b"/>
+        <button onclick="calculateSum();">Calculate Sum</button>
+        <div id="sum_result" class="result">Sum: -</div>
+    </div>
+
+    <div class="container">
+        <h2>Star Pattern Generator</h2>
+        <input id="pattern_input" type="number" placeholder="Enter size" onkeyup="generatePattern();"/>
+        <div id="pattern_result" class="result"></div>
+    </div>
+
+    <script>
+        let colors = ["red", "black", "orange", "blue"];
+        let idx = 0;
+
+        function generateSequence(){
+            let n = parseInt(document.getElementById("sequence_input").value);
+            let text = "";
+            let i = 1;
+            do {
+                text += i + " ";
+                i += 1;
+            } while (i <= n);
+            document.getElementById("sequence_result").innerHTML = text;
+            document.getElementById("sequence_result").style.color = colors[idx];
+            idx = (idx + 1) % colors.length;
+        }
+
+        function calculateSum(){
+            let a = parseInt(document.getElementById("input_a").value);
+            let b = parseInt(document.getElementById("input_b").value);
+            let sum = 0;
+            for(let i = a; i <= b; i++){
+                sum += i;
+            }
+            document.getElementById("sum_result").innerHTML = "Sum: " + sum;
+        }
+
+        function generatePattern(){
+            let n = parseInt(document.getElementById("pattern_input").value);
+            let text = "";
+            for(let i = 1; i <= n; i++){
+                for(let j = 0; j < i; j++){
+                    text += "* ";
+                }
+                text += "<br>";
+            }
+            document.getElementById("pattern_result").innerHTML = text;
+            document.getElementById("pattern_result").style.color = colors[idx];
+            idx = (idx + 1) % colors.length;
+        }
+    </script>
+
+</body>
+</html>

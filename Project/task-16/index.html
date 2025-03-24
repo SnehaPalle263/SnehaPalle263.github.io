@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class Works</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .header {
+            background-color: #f0f4ff;
+            padding: 15px;
+            font-size: 24px;
+            font-weight: bold;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .header a {
+            font-size: 16px;
+            text-decoration: none;
+            color: black;
+            cursor: pointer;
+            margin: 10px;
+        }
+        .projects {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+        }
+        .task-container {
+            color: white;
+            font-size: 50px;
+            font-weight: bold;
+            padding: 150px;
+            margin-top: -10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <span>Class Works</span>
+        <div class="projects">
+            <a class="project1" onclick="changeTask('Task 1', 'green')">Project 1</a>
+            <a class="project2" onclick="changeTask('Task 2', 'blue')">Project 2</a>
+            <a class="project3" onclick="changeTask('Task 3', 'red')">Project 3</a>
+        </div>
+    </div>
+
+    <div class="task-container" id="task-box" style="background-color: green;">
+        Task 1
+    </div>
+
+    <script>
+        function changeTask(taskName, color) {
+            let taskBox = document.getElementById("task-box");
+            taskBox.innerHTML = taskName;
+            taskBox.style.backgroundColor = color;
+        }
+    </script>
+
+</body>
+</html>

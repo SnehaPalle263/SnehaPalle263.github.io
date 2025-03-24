@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        table { width: 50%; margin: 20px auto; border-collapse: collapse; }
+        td { padding: 10px; }
+        button { padding: 10px 20px; cursor: pointer; }
+        .btn_green { background-color: green; color: white; }
+        .btn_red { background-color: red; color: white; }
+        #demo_div { margin-top: 20px; padding: 10px; border: 1px solid #ccc; background-color: #f9f9f9; }
+    </style>
+</head>
+<body>
+    <h1>Students</h1>
+    <table>
+        <tr><td><input id="SNo" placeholder="Enter SNo"/></td><td><input id="name" placeholder="Enter name"/></td></tr>
+        <tr><td><input id="college" placeholder="Enter college"/></td><td><input id="email" placeholder="Enter email"/></td></tr>
+        <tr><td><button onclick="insert();" class="btn_green">Insert Info</button></td>
+            <td><button onclick="clear_inputs();" class="btn_red">Clear Inputs</button></td></tr>
+        <tr><td><button onclick="show_student_info();" class="btn_green">Show All</button></td>
+            <td><button onclick="clear_display();" class="btn_red">Clear Display</button></td></tr>
+    </table>
+    <input type="text" id="search_field" placeholder="Search by SNo or Name"/>
+    <button onclick="search();" class="btn_green">Search</button>
+    <div id="demo_div"></div>
+    
+    <script>
+        let students = [];
+        
+        function Student(SNo, name, college, email) {
+            this.SNo = SNo;
+            this.name = name;
+            this.college = college;
+            this.email = email;
+            this.describe = function() {
+                return `${this.college} | ${this.SNo} | ${this.name} | ${this.email}`;
+            };
+        }
+        
+        function insert() {
+            let SNo = document.getElementById("SNo").value;
+            let name = document.getElementById("name").value;
+            let college = document.getElementById("college").value;
+            let email = document.getElementById("email").value;
+            
+            if(SNo && name && college && email) {
+                students.push(new Student(SNo, name, college, email));
+                clear_inputs();
+            } else {
+                alert("Please fill in all fields.");
+            }
+        }
+        
+        function clear_inputs() {
+            document.getElementById("SNo").value = "";
+            document.getElementById("name").value = "";
+            document.getElementById("college").value = "";
+            document.getElementById("email").value = "";
+        }
+        
+        function show_student_info() {
+            document.getElementById("demo_div").innerHTML = students.map(s => s.describe()).join("<br>") || "No students available.";
+        }
+        
+        function clear_display() {
+            document.getElementById("demo_div").innerHTML = "";
+        }
+        
+        function search() {
+            let key = document.getElementById("search_field").value.toLowerCase();
+            let results = students.filter(s => s.SNo.toLowerCase().includes(key) || s.name.toLowerCase().includes(key));
+            document.getElementById("demo_div").innerHTML = results.length ? results.map(s => s.describe()).join("<br>") : "No student found.";
+        }
+    </script>
+</body>
+</html>
