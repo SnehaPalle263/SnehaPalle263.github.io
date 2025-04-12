@@ -76,8 +76,12 @@
     </div>
 
     <script>
-        function calculateGrade() {
-            const score = parseFloat(document.getElementById('score').value);
+    document.addEventListener("DOMContentLoaded", function () {
+        const form = document.querySelector("form");
+
+        form.addEventListener("submit", function (event) {
+            event.preventDefault(); // prevents page reload
+            const score = parseFloat(document.getElementById("score").value);
             let grade = "-";
 
             if (isNaN(score) || score < 0) {
@@ -92,9 +96,9 @@
                 grade = "F";
             }
 
-            document.getElementById('grade').textContent = grade;
-        }
-    </script>
-
+            document.getElementById("grade").textContent = grade;
+        });
+    });
+</script>
 </body>
 </html>
