@@ -76,29 +76,30 @@
     </div>
 
     <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const form = document.querySelector("form");
+        function checkEnter(event) {
+            if (event.key === 'Enter') {
+                calculateGrade();
+            }
+        }
 
-        form.addEventListener("submit", function (event) {
-            event.preventDefault(); // prevents page reload
-            const score = parseFloat(document.getElementById("score").value);
-            let grade = "-";
-
-            if (isNaN(score) || score < 0) {
-                grade = "Invalid Score";
-            } else if (score >= 80) {
+        function calculateGrade() {
+            var score = document.getElementById('score').value;
+            var grade = "";
+            
+            if (score >= 80) {
                 grade = "A";
             } else if (score >= 60) {
                 grade = "B";
             } else if (score >= 40) {
                 grade = "C";
-            } else {
+            } else if (score >= 0) {
                 grade = "F";
+            } else {
+                grade = "Invalid Score";
             }
 
-            document.getElementById("grade").textContent = grade;
-        });
-    });
-</script>
+            document.getElementById('grade').innerText = grade;
+        }
+    </script>
 </body>
 </html>
