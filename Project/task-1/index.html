@@ -1,98 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grade Calculator</title>
-    <style>
-        body {
-            background-color: black;
-            color: white;
-            font-family: Arial, sans-serif;
-            text-align: center;
-        }
-        .heading {
-            background-color: gray;
-            text-align: center;
-            margin: 0.5em;
-            border-radius: 10px;
-            padding: 1em 2em;
-        }
-        .content-body {
-            margin: 0.5em;
-            background-color: aquamarine;
-            font-size: 1.2em;
-            border-radius: 10px;
-            padding: 20px;
-            color: black;
-            max-width: 400px;
-            margin: auto;
-        }
-        .mybutton {
-            text-align: center;
-            margin: 1em 0;
-        }
-        button {
-            font-size: 1.2em;
-            display: block;
-            margin: 0 auto;
-            padding: 10px 20px;
-            border: none;
-            background-color: darkslategrey;
-            color: white;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: darkgray;
-        }
-        input {
-            font-size: 1em;
-            padding: 5px;
-            width: 100%;
-            margin-bottom: 10px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Grade Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7f7f7;
+      text-align: center;
+    }
+
+    .header {
+      background-color: #777;
+      color: white;
+      padding: 20px;
+      font-size: 28px;
+      font-weight: bold;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+
+    .container {
+      background-color: #88ffe0;
+      padding: 30px;
+      margin: 0 auto;
+      width: 300px;
+      border-radius: 12px;
+    }
+
+    input[type="number"] {
+      padding: 10px;
+      font-size: 16px;
+      width: 90%;
+      margin-bottom: 15px;
+    }
+
+    button {
+      padding: 12px 25px;
+      background-color: #2f4f4f;
+      color: white;
+      font-size: 18px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .result {
+      font-size: 22px;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+  </style>
 </head>
 <body>
 
-    <div class="heading">
-        <h1>Grade Calculator</h1>
-    </div>
+  <div class="header">Grade Calculator</div>
 
-    <div class="content-body">
-        <label for="Enter your score:"></label>
-        <input type="number" id="score" onkeypress="checkEnter(event)" placeholder="Type score and press Enter">
-        <button onclick="calculateGrade()">Calculate Grade</button>
-        <h2>Grade: <span id="grade">-</span></h2>
-    </div>
+  <div class="container">
+    <input type="number" id="score" placeholder="Enter your score" />
+    <br>
+    <button onclick="calculateGrade()">Calculate Grade</button>
+    <div class="result" id="grade">Grade: -</div>
+  </div>
 
-    <script>
-        function checkEnter(event) {
-            if (event.key === 'Enter') {
-                calculateGrade();
-            }
-        }
+  <script>
+    function calculateGrade() {
+      const score = parseFloat(document.getElementById("score").value);
+      let grade = "-";
 
-        function calculateGrade() {
-            var score = document.getElementById('score').value;
-            var grade = "";
-            
-            if (score >= 80) {
-                grade = "A";
-            } else if (score >= 60) {
-                grade = "B";
-            } else if (score >= 40) {
-                grade = "C";
-            } else if (score >= 0) {
-                grade = "F";
-            } else {
-                grade = "Invalid Score";
-            }
+      if (isNaN(score)) {
+        grade = "Invalid input";
+      } else if (score >= 90) {
+        grade = "A";
+      } else if (score >= 80) {
+        grade = "B";
+      } else if (score >= 70) {
+        grade = "C";
+      } else if (score >= 60) {
+        grade = "D";
+      } else {
+        grade = "F";
+      }
 
-            document.getElementById('grade').innerText = grade;
-        }
-    </script>
+      document.getElementById("grade").innerText = "Grade: " + grade;
+    }
+  </script>
 
 </body>
 </html>
